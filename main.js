@@ -126,3 +126,20 @@ const per2 = new PersonInfo("John", "Lennon");
 
 console.log(per1.getFullName());
 console.log(per2.getFullName());
+
+// !Prototypal inheritance
+function SuperHero(fName, lName) {
+  this.isSuperHero = true;
+  PersonInfo.call(this, fName, lName);
+}
+SuperHero.prototype.fightCrime = function () {
+  // console.log("Fighting crime");
+  return "Fight Crime";
+};
+
+SuperHero.prototype = Object.create(PersonInfo.prototype);
+
+const batman = new SuperHero("John", "Travolta");
+
+SuperHero.prototype.constructor = SuperHero;
+console.log(batman);
