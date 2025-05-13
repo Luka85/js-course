@@ -110,3 +110,19 @@ sayMyName();
 // *1. Explicit binding
 // *1. Implicit binding
 // *1. Default binding
+
+// !Prototype
+function PersonInfo(fName, lName) {
+  this.firstName = fName;
+  this.lastName = lName;
+}
+
+PersonInfo.prototype.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+};
+
+const per1 = new PersonInfo("Luka", "Kikelj");
+const per2 = new PersonInfo("John", "Lennon");
+
+console.log(per1.getFullName());
+console.log(per2.getFullName());
