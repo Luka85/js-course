@@ -112,34 +112,60 @@ sayMyName();
 // *1. Default binding
 
 // !Prototype
-function PersonInfo(fName, lName) {
-  this.firstName = fName;
-  this.lastName = lName;
-}
+// function PersonInfo(fName, lName) {
+//   this.firstName = fName;
+//   this.lastName = lName;
+// }
 
-PersonInfo.prototype.getFullName = function () {
-  return `${this.firstName} ${this.lastName}`;
-};
+// PersonInfo.prototype.getFullName = function () {
+//   return `${this.firstName} ${this.lastName}`;
+// };
 
-const per1 = new PersonInfo("Luka", "Kikelj");
-const per2 = new PersonInfo("John", "Lennon");
+// const per1 = new PersonInfo("Luka", "Kikelj");
+// const per2 = new PersonInfo("John", "Lennon");
 
-console.log(per1.getFullName());
-console.log(per2.getFullName());
+// console.log(per1.getFullName());
+// console.log(per2.getFullName());
 
 // !Prototypal inheritance
-function SuperHero(fName, lName) {
-  this.isSuperHero = true;
-  PersonInfo.call(this, fName, lName);
+// function SuperHero(fName, lName) {
+//   this.isSuperHero = true;
+//   PersonInfo.call(this, fName, lName);
+// }
+// SuperHero.prototype.fightCrime = function () {
+//   // console.log("Fighting crime");
+//   return "Fight Crime";
+// };
+
+// SuperHero.prototype = Object.create(PersonInfo.prototype);
+
+// const batman = new SuperHero("John", "Travolta");
+
+// SuperHero.prototype.constructor = SuperHero;
+// console.log(batman);
+
+// !Class
+class PersonInfo {
+  constructor(fName, lName) {
+    this.firstName = fName;
+    this.lastName = lName;
+  }
+  sayMyName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
 }
-SuperHero.prototype.fightCrime = function () {
-  // console.log("Fighting crime");
-  return "Fight Crime";
-};
 
-SuperHero.prototype = Object.create(PersonInfo.prototype);
+const classP1 = new PersonInfo("Bruce", "Wayne");
+console.log(classP1.sayMyName());
 
+class SuperHero extends PersonInfo {
+  constructor(fName, lName) {
+    super(fName, lName);
+    this.isSuperHero = true;
+  }
+  fightCrime() {
+    console.log("Fighting crime");
+  }
+}
 const batman = new SuperHero("John", "Travolta");
-
-SuperHero.prototype.constructor = SuperHero;
-console.log(batman);
+console.log(batman.sayMyName());
