@@ -192,3 +192,23 @@ const obj = {
 for (const word of obj) {
   console.log(word);
 }
+
+// !Generators
+function normalFunction() {
+  console.log("Hello");
+}
+normalFunction();
+normalFunction();
+
+function* generatorFunction() {
+  console.log("Generator");
+  yield "Hello";
+  yield "World";
+}
+
+const generatorObject = generatorFunction();
+
+console.log(generatorFunction());
+for (const word of generatorObject) {
+  console.log(word);
+}
